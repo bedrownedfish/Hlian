@@ -1,0 +1,48 @@
+body{
+	background: #fff;
+}
+.section1{
+	background: #fff;
+	
+}
+.section1 .mui-bar{
+	background: #fff;
+}
+.section2 .container .section2-1{
+	text-align: center;
+	padding-top: 15px;
+}
+.section2 .container .section2-1 img{
+	width: 30%;
+}
+.section2 .container .section2-2{
+	margin-top: 30px;
+}
+.section2 .container .section2-2 p{
+	color: #000;
+	font-size: 1rem;
+	font-weight: bold;
+}
+.section2 .container .section2-3{
+	margin-top: 20px;
+}
+.section2 .container .section2-3 p{
+	color: #00B8F1;
+	font-size: 1.1rem;
+	margin-bottom: 10px;
+}
+.section3{
+	position: absolute;
+	width: 100%;
+	bottom: 35px;
+	text-align: center;
+}
+.section3 a{
+	display: inline-block;
+	width: 50%;
+	background: #57C0F0;
+	padding: 12px 0px;
+	border-radius: 25px;
+	color: #fff;
+	font-size: 1.1rem;
+}

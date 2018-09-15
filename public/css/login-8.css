@@ -1,0 +1,102 @@
+body{
+	background: #fff;
+}
+.section1{
+	background: #fff;
+	
+}
+.section1 .mui-bar{
+	background: #fff;
+}
+.section2-1{
+	text-align: center;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+.section2-1 p{
+	color: #000000;
+	font-size: 1rem;
+}
+.section2-2{
+	margin-bottom: 10px;
+}
+.section2-2 p{
+	color: #000000;
+	font-size: 1rem;
+	font-weight: bold;
+	text-align: center;
+}
+.section2-3 input{
+	float: left;
+	width: 33.3%;
+	text-align: center;
+	padding: 10px 0px;
+	font-weight: bold;
+	border: none;
+}
+.section2-4{
+	
+}
+.section2-4 input{
+	height: 45px;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #eee;
+	font-size: 0.9rem;
+	margin: 0;
+}
+.section2-4 ul li{
+	float: left;
+	width: 33.3%;
+	text-align: center;
+	padding: 10px 0px;
+	font-weight: bold;
+}
+.section2-4 ul li.select{
+	background: #ff6700;
+}
+.section2-5{
+	text-align: center;
+	margin-top: 10px;
+}
+.section2-7{
+	text-align: left;
+	margin-top: 10px;
+	
+}
+.section2-7 p{
+	font-size: 0.8rem;
+	padding-left: 15px;
+}
+.section2-5 input{
+	display: inline-block;
+	width: 50%;
+	background: #57C0F0;
+	padding: 12px 0px;
+	border-radius: 25px;
+	color: #fff;
+	font-size: 1.1rem;
+	border: none;
+	
+}
+.section2-6{
+	position: relative;
+}
+.section2-6 li{
+	padding-left: 40px !important;
+	font-size: 0.8rem;
+	background: none !important;
+}
+.mui-table-view-cell:after {
+    background-color: none !important;
+}
+.section2-6 li input{
+	left: 10px !important;
+	border: none;
+}
+.section2-6 p{
+	position: absolute;
+	top: 13px;
+	left: 40px;
+	z-index: 99;
+}

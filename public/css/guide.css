@@ -1,0 +1,89 @@
+body{
+	background: #3474FA;
+}
+.section2 p{
+	text-align: right;
+	padding-top: 20px;
+}
+.section2 p a{
+	color: #fff;
+}
+.section2 p a img{
+	width: 1.1rem;
+}
+.section3{
+	margin-top: 20px;
+}
+.section3 .container {
+	text-align: center;
+}
+.section3 .container img{
+	width: 22%;
+}
+.section4 {
+	margin-top: 30px;
+}
+.section4 .container p{
+	color: #fff;
+	font-size: 1.2rem;
+	padding: 0px 10px;
+	text-align: center;
+}
+.section5{
+	position: absolute;
+	width: 100%;
+	bottom: 30px;
+}
+.section5 .container .a1{
+	float: left;
+	width: 45%;
+	background: #fff;
+	text-align: center;
+	border-radius: 3px;
+}
+.section5 .container .a1 a{
+	display: inline-block;
+	padding: 13px 0px;
+	font-size: 1rem;
+	color: #3474FA;
+}
+.section5 .container .b1{
+	float: right;
+	width: 45%;
+	background: #8DA0C8;
+	text-align: center;
+	border-radius: 3px;
+}
+.section5 .container{
+	
+}
+.section5 .container .b1 a{
+	display: inline-block;
+	padding: 13px 0px;
+	font-size: 1rem;
+	color: #fff;
+}
+.section5 .container .weibo{
+	margin-top: 15px;
+}
+.section5 .container .weibo p{
+	background: #fff;
+	text-align: center;
+	border-radius: 3px;
+}
+.section5 .container .weibo p a img{
+	width: 2rem;
+	position: relative;
+	top: 8px;
+}
+.section5 .container .weibo p a span{
+	position: relative;
+	
+}
+.section5 .container .weibo p a{
+	display: block;
+	height: 47px;
+	line-height: 47px;
+	font-size: 1rem;
+	color: #3474FA;
+}

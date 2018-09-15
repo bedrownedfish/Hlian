@@ -1,0 +1,75 @@
+.section2{
+	padding: 10px 0px;
+}
+.section2 .container p{
+	color: #000;
+	font-size: 1rem;
+	padding-left: 10px;
+	font-weight: 400;
+}
+.section3 .container .f1{
+	margin-bottom: 5px;
+	text-align: center;
+}
+.section3 .container .f1 input{
+	font-size: 0.9rem;
+	width: 95%;
+}
+.section3 .container .uer{
+	width: 95%;
+	margin: 0 auto;
+}
+.section3 .container .uer p{
+	float: right;
+	margin-top: 7px;
+	font-size: 0.9rem;
+	color: #9299C3;
+}
+.section3 .container .uer p a{
+	color: #9E9FCD;
+}
+.section3 .container .uer li{
+	padding: 0 !important;
+	float: left;
+	font-size: 0.9rem;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	background: none !important;
+}
+.mui-table-view-cell:after{
+	background: none !important;
+}
+.mui-table-view-cell.mui-active{
+	background: none !important;
+}
+.section3 .container .uer li input{
+	position: static;
+	content: '\e442';
+	position: relative;
+	top: 2px;
+	left: 0;
+	margin-right: 6px;
+}
+.section3 .container .sub{
+	text-align: center;
+	margin-top: 10px;
+	
+}
+.section3 .container .sub input{
+	font-size: 0.9rem;
+	width: 95%;
+	height: 40px;
+	font-size: 0.9rem;
+	background: #3474FA;
+}
+.section3 .container .else{
+	text-align: center;
+	margin-top: 30px;
+}
+.section3 .container .else p{
+	font-size: 0.8rem;
+	margin-bottom: 5px;
+}
+.section3 .container .else p a{
+	color: #3474FA;
+	font-size: 0.9rem;
+}

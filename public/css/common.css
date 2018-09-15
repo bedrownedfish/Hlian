@@ -1,0 +1,382 @@
+/*公共类---------------------------*/
+*{
+	margin: 0;
+	padding: 0;
+}
+::-webkit-scrollbar{
+  display:none;
+}
+a{
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-user-select: none;
+	-moz-user-focus: none;
+	-moz-user-select: none;
+}
+a,a:hover,a:active,a:visited,a:link,a:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline:none;
+    background: none;
+    text-decoration: none;
+}
+::selection { 
+    background: #FFF; 
+    color: #333; 
+} 
+::-moz-selection { 
+    background: #FFF; 
+    color: #333; 
+} 
+::-webkit-selection { 
+    background: #FFF; 
+    color: #333; 
+} 
+li{
+	list-style: none;
+}
+input{
+	padding: 0;
+	margin: 0;
+}
+p{
+	margin: 0;
+}
+body{
+	background: #fff;
+	font-family: arial !important;
+}
+.container{
+	padding: 0px 15px;
+}
+.container1{
+	padding: 0px 10px;
+}
+.container_1{
+	padding: 0px 15px;
+}
+.container_2{
+	padding: 0px 30px;
+}
+.sectionH2{
+	background: #fff;
+}
+.sectionH{
+	height: 44px;
+	width: 100%;
+	position: fixed;
+	z-index: 99;
+}
+.sectionH .mui-bar{
+	background: none;
+	box-shadow: none;
+	border-bottom: 1px solid #eee;
+}
+.sectionH .mui-bar .mui-icon img{
+	width: 1.3rem;
+	padding-top: 2px;
+}
+.sectionH1 .mui-bar{
+	border: none;
+}
+.sectionH1 .mui-bar h1{
+	color: #fff;
+	/*font-size: 18px;*/
+}
+.sectionH .mui-bar .right1{
+	font-size: 0.8rem;
+	padding-top: 16px;
+	color: #727272;
+}
+.kong1{
+	height: 44px;
+	width: 100%;
+}
+.kong{
+	height: 55px;
+}
+html{
+	height: 100%;
+}
+.mui-pull-bottom-pocket{
+	
+}
+.ge{
+	height: 10px;
+	width: 100%;
+	background: #eee;
+}
+
+/*登录页---------------------*/
+.login_body{
+	height: 100%;
+	width: 100%;
+	background: url(../images/login_bg.png);
+	background-size: 100% 100%;
+}
+.login_section1{
+	text-align: center;
+	margin-top: 3rem;
+}
+.login_section1 .container img{
+	width: 5rem;
+	height: 5rem;
+}
+
+.login_section2{
+	margin-top: 50px;
+}
+.login_section2 .container_2 .f1{
+	position: relative;
+	margin-bottom: 25px;
+}
+.login_section2 .container_2 .f1.ff{
+	display: none;
+}
+.login_section2 .container_2 .f1 .img1{
+	position: absolute;
+	height: 2rem;
+	left: 10px;
+	width: 2rem;
+	top: 6.5px;
+}
+.login_section2 .container_2 .f1 input{
+	background: rgba(255,255,255,0.2);
+	color: #fff;
+	border-radius: 25px;
+	margin: 0;
+	height: 45px;
+	font-size: 0.9rem;
+	padding-left: 50px;
+	border: none;
+}
+.login_section2 .container_2 .f1 input::-webkit-input-placeholder{
+	color: rgba(255,255,255,0.6);
+	font-size: 0.9rem;
+}
+.login_section2 .container_2 .f2 input{
+	width: 60%;
+	float: left;
+}
+.login_section2 .container_2 .f2 span{
+	float: right;
+	width: 35%;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	color: rgba(255,255,255,0.6);
+	font-size: 0.9rem;
+	border: 1px solid rgba(255,255,255,0.2);
+	border-radius: 25px;
+}
+.login_section2 .container_2 .sub input{
+	background: none;
+	color: rgba(255,255,255,0.6);
+	border-radius: 25px;
+	margin: 0;
+	font-size: 1rem;
+	width: 100%;
+	height: 45px;
+	border: 1px solid rgba(255,255,255,0.2);
+}
+.login_other{
+	position: fixed;
+	width: 100%;
+	bottom: 50px;
+}
+.login_other .div1{
+	text-align: center;
+	margin-bottom: 15px;
+}
+.login_other .div1 .s2.login_s3{
+	display: none;
+}
+.login_other .div1 .s2{
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	color: #fff;
+	font-size: 0.9rem;
+}
+.login_other .div1 .s4{
+	width: 30%;
+	height: 1px;
+	background: rgba(255,255,255,0.2);
+	margin-top: 10px;
+}
+.login_other .div1 .s1{
+	float: left;
+}
+.login_other .div1 .s3{
+	float: right;
+}
+.login_other .div2 p a{
+	color: #fff;
+	font-size: 0.9rem;
+}
+.login_other .div2 .p1{
+	float: left;
+}
+.login_other .div2 .p2{
+	float: right;
+}
+/*注册页-------------------------------------------------------------*/
+.resiter_section1  .fom .f1{
+	position: relative;
+	padding: 5px 0px;
+	border-bottom: 1px solid #eee;
+}
+.resiter_section1  .fom .f1 .container_1{
+	position: relative;
+}
+.resiter_section1  .fom .f1 input{
+	color: #000;
+	margin: 0;
+	height: 45px;
+	font-size: 0.9rem;
+	padding-left: 50px;
+	border: none;
+}
+.resiter_section1  .fom .f1 input::-webkit-input-placeholder{
+	color: rgba(0,0,0,0.8);
+	font-size: 0.9rem;
+}
+.resiter_section1  .fom .f1 .img1{
+	position: absolute;
+	height: 2rem;
+	left: 20px;
+	width: 2rem;
+	top: 6.5px;
+}
+.resiter_section1  .fom .f1 .resiter_btn{
+	position: absolute;
+	right: 15px;
+	top: 3px;
+	width: 6rem;
+	text-align: center;
+	height: 40px;
+	border: 1px solid #eee;
+	line-height: 40px;
+	font-size: 0.9rem;
+	border-radius: 5px;
+	color: rgba(0,0,0,0.8);
+}
+.resiter_section1  .fom .f1 .resiter_yan{
+	position: absolute;
+	right: 15px;
+	top: 6.5px;
+	width: 2rem;
+	height: 2rem;
+}
+.resiter_section1  .fom .f1 .resiter_yan.resiter_yan1{
+	display: none;
+}
+.resiter_section1  .fom .sub{
+	margin-top: 50px;
+}
+.resiter_section1  .fom .sub input{
+	width: 100%;
+	border-radius: 25px;
+	height: 45px;
+	background: linear-gradient(to right,#50A4F2,#3574FA);
+	border: none;
+	color: #fff;
+	font-size: 1rem;
+}
+
+/* 忘记密码页*/
+.forget_section1  .fom .f1{
+	position: relative;
+	padding: 5px 0px;
+	border-bottom: 1px solid #eee;
+}
+.forget_section1  .fom .f1 .container_1{
+	position: relative;
+}
+.forget_section1  .fom .f1 input{
+	color: #000;
+	margin: 0;
+	height: 45px;
+	font-size: 0.9rem;
+	padding-left: 50px;
+	border: none;
+}
+.forget_section1  .fom .f1 input::-webkit-input-placeholder{
+	color: rgba(0,0,0,0.8);
+	font-size: 0.9rem;
+}
+.forget_section1  .fom .f1 .img1{
+	position: absolute;
+	height: 2rem;
+	left: 20px;
+	width: 2rem;
+	top: 6.5px;
+}
+.forget_section1  .fom .f1 .forget_btn{
+	position: absolute;
+	right: 15px;
+	top: 3px;
+	width: 6rem;
+	text-align: center;
+	height: 40px;
+	border: 1px solid #eee;
+	line-height: 40px;
+	font-size: 0.9rem;
+	border-radius: 5px;
+	color: rgba(0,0,0,0.8);
+}
+.forget_section1  .fom .f1 .forget_yan{
+	position: absolute;
+	right: 15px;
+	top: 6.5px;
+	width: 2rem;
+	height: 2rem;
+}
+.forget_section1  .fom .f1 .forget_yan.forget_yan1{
+	display: none;
+}
+.forget_section1  .fom .sub{
+	margin-top: 50px;
+}
+.forget_section1  .fom .sub input{
+	width: 100%;
+	border-radius: 25px;
+	height: 45px;
+	background: linear-gradient(to right,#50A4F2,#3574FA);
+	border: none;
+	color: #fff;
+	font-size: 1rem;
+}
+.set_yijian_section1 {
+	padding: 15px 0px;
+}
+.set_yijian_section1 textarea{
+	background: #fcfcfc;
+	border-radius: 5px;
+	font-size: 0.9rem;
+	color: #000;
+}
+.set_yijian_section1 .f2 .p1{
+	color: #000;
+	font-size: 1rem;
+	margin-bottom: 10px;
+}
+.set_yijian_section1 .f4 .p1{
+	color: #000;
+	font-size: 1rem;
+	margin-bottom: 10px;
+}
+.set_yijian_section1 .f2 input{
+	height: 35px;
+	font-size: 0.9rem;
+}
+.set_yijian_section1 .sub{
+	margin-top: 50px;
+}
+.set_yijian_section1 .sub input{
+	width: 100%;
+	border-radius: 25px;
+	height: 35px;
+	background: linear-gradient(to right,#50A4F2,#3574FA);
+	border: none;
+	font-size: 1rem;
+}

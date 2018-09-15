@@ -1,0 +1,35 @@
+body{
+	
+}
+.section1{
+	
+}
+.section1 .mui-bar{
+
+}
+.section1 .mui-bar a{
+	color: #fff;
+}
+.section2{
+	padding: 10px 0px;
+}
+.section2 p{
+	color: #000;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.section3{
+	padding: 10px 0px;
+}
+.section3 .out{
+	text-align: center;
+}
+.section3 .out a{
+	display: inline-block;
+	width: 50%;
+	background: #3474FA;
+	color: #fff;
+	font-size: 1rem;
+	padding: 10px 0px;
+	border-radius: 25px;
+}

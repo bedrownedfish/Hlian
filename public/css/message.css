@@ -1,0 +1,68 @@
+body{
+	
+}
+.section1{
+	
+}
+.section1 .mui-bar{
+
+}
+.section1 .mui-bar a{
+	color: #fff;
+}
+.section2{
+	padding: 10px 0px;
+}
+.section2 p{
+	color: #000;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.section3{
+	padding: 10px 0px;
+}
+.section3 .section3-1 ul li{
+	padding: 10px 15px;
+	background: #fff;
+	border-bottom: 1px solid #eee;
+}
+.section3 .section3-1 ul li a .div1{
+	float: left;
+	position: relative;
+	width: 70%;
+}
+.section3 .section3-1 ul li a .div1 .sss{
+	position: absolute;
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	background: red;
+	left: -5px;
+	top: 3px;
+
+}
+.section3 .section3-1 ul li a .div1 .p1{
+	color: #000;
+	font-weight: bold;
+	font-size: 1.1rem;
+	margin-bottom: 5px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
+.section3 .section3-1 ul li a .div1 .p1.select{
+	color: #666;
+}
+.section3 .section3-1 ul li a .div1 .p2{
+	color: #666;
+	font-size: 0.9rem;
+}
+.section3 .section3-1 ul li a .div2{
+	float: right;
+	margin-top: 12px;
+}
+.section3 .section3-1 ul li a .div2 .p1{
+	color: #666;
+	font-size: 0.9rem;
+}

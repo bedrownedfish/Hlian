@@ -1,0 +1,43 @@
+body{
+	
+}
+.section1{
+	
+}
+.section1 .mui-bar{
+
+}
+.section1 .mui-bar a{
+	color: #fff;
+}
+.section2{
+	padding: 10px 0px;
+}
+.section2 p{
+	color: #000;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.section3{
+	text-align: center;
+}
+.section3 img{
+	width: 30%;
+	
+}
+.section3 .p1{
+	color: #3474FA;
+	font-size: 1.5rem;
+	margin-bottom: 2px;
+}
+.section3 .p2{
+	font-size: 0.9rem;
+	color: #666;
+}
+.section5{
+	padding: 10px 0px;
+}
+.section5 p{
+	color: #000;
+	font-size: 1rem;
+}

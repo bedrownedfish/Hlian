@@ -1,0 +1,114 @@
+body{
+	background: #fff;
+}
+.section1{
+	background: #fff;
+	
+}
+.section1 .mui-bar{
+	background: #fff;
+}
+.section2-1{
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.section2-1 p{
+	color: #000000;
+	font-size: 1rem;
+}
+.section2-2{
+	margin-bottom: 10px;
+}
+.section2-2 p{
+	color: #000000;
+	font-size: 1rem;
+	font-weight: bold;
+}
+.section2-3 ul li{
+	float: left;
+	width: 33.3%;
+	background: #f8f8f8;
+	text-align: center;
+	padding: 10px 0px;
+	font-weight: bold;
+}
+.section2-4{
+	
+}
+.section2-4 ul li{
+	float: left;
+	width: 33.3%;
+	text-align: center;
+	padding: 10px 0px;
+	font-weight: bold;
+}
+.section2-4 ul li.select{
+	background: #ff6700;
+}
+.section2-5{
+	text-align: center;
+	margin-top: 10px;
+}
+.section2-5 a{
+	display: inline-block;
+	width: 50%;
+	background: #57C0F0;
+	padding: 12px 0px;
+	border-radius: 25px;
+	color: #fff;
+	font-size: 1.1rem;
+	
+}
+.sectionboa{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.4;
+	background: #000;
+	z-index: 998;
+}
+.sectionbod{
+	position: absolute;
+	width: 70%;
+	left: 15%;
+	top: 20%;
+	background: #fff;
+	border-radius: 5px;
+	z-index: 999;
+	overflow: hidden;
+}
+.sectionbod .sectionbod_1{
+	text-align: center;
+	
+}
+.sectionbod .sectionbod_1 .p1{
+	color: #000;
+	font-size: 0.95rem;
+	padding: 0px 10px;
+	margin-bottom: 5px;
+
+}
+.sectionbod .sectionbod_1 .p3{
+	margin-top: 15px;
+}
+.sectionbod .sectionbod_1 .p3 img{
+	width: 2.5rem;
+}
+.sectionbod .sectionbod_1 .p2{
+	color: #4e4e4e;
+	font-size: 0.8rem;
+	text-align: left;
+	padding: 0px 10px;
+	margin-bottom: 5px;
+}
+.sectionbod .sectionbod_1 .p4 a{
+	display: inline-block;
+	width: 100%;
+	background: #FF3600;
+	padding: 10px 0px;
+	color: #fff;
+	font-size: 0.9rem;
+}
