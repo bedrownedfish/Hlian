@@ -157,6 +157,8 @@ class Commerce extends CI_Controller {
 
 			foreach ($arr['deal'] as $k => $v) {
 
+				$arr['deal'][$k]['useraccounts'] = '';
+
 				if($v['accounts']==$arr['eth_accounts']){
 
 					$arr['deal'][$k]['useraccounts'] = $this->Dbmodel->select('eth_accounts')->where(array('id'=>$v['userid']))->get('members',1)['eth_accounts'];
@@ -167,6 +169,8 @@ class Commerce extends CI_Controller {
 			$arr['page'] = floor($this->Dbmodel->select()->where($where,'',false)->get('dealrecord',3)/10);
 
 			$arr['moneys'] = $this->Dbmodel->ci_find(array('userid'=>$users['id']),'balance')[$arr['tokname']];
+
+			$arr['chart'] = $this->Publics->getKinds();
 
 			$data['result'] = $arr;
 
