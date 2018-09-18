@@ -327,6 +327,8 @@ class Publics extends CI_Model{
 
 		$b = $this->Dbmodel->ci_find(array('userid'=>$this->session->userid),'balance',$a['tokname']);
 
+		$a['fee'] = $this->Dbmodel->select()->get('config',1)['fee'];
+
 		$a['moneys'] = $b[$a['tokname']];
 
 		return $a;

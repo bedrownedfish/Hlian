@@ -35,6 +35,14 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
+			<div class="layui-inline">		
+				<label class="layui-form-label">矿工费率(手续费)</label>
+				<div class="layui-input-inline">
+					<input class="layui-input newsAuthor" lay-verify="required" value="<?=(float)$codes['fee']?>" name="fee" placeholder="请输入汇率" type="number">
+				</div><span style="margin-top: 10px;float: left;">%</span>
+			</div>
+		</div>
+		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">区块链交易</label>
 				<div class="layui-input-inline">

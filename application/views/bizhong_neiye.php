@@ -89,7 +89,7 @@
 	</div>
 	<div class="section8 select" id="dealss">
 		<?php foreach($cuarr['deal'] as $key => $value):?>
-		<div class="section8-1 <?=$value['accounts']==$cuarr['eth_accounts']?'plus':'reduce'?>">
+		<div class="section8-1 <?=$value['accounts']==$cuarr['eth_accounts']?'plus':'reduce'?>" data-money="<?=number_format($value['moneys'],2)." ".$cuarr['nickname'] ?>"data-user="<?=$value['accounts']!=$cuarr['eth_accounts']?$value['accounts']:$value['useraccounts']?>" data-time="<?=date('Y-m-d H:i:s',$value['addtime'])?>" data-accoun="<?=$value['accounts']!=$cuarr['eth_accounts']?$value['accounts']:$cuarr['eth_accounts']?>" data-fee="<?=$value['fee']?>">
 			<div class="container mui-clearfix">
 				<div class="ab">
 					<p class="p1"><?=substr_replace($value['accounts']!=$cuarr['eth_accounts']?$value['accounts']:$value['useraccounts'], "***",5,25)?></p>
@@ -142,12 +142,60 @@
 	<div class="section10">
 		
 	</div>
+
+
+	<div class="section13">
+		
+	</div>
+	<div class="section12">
+		<div class="container">
+			<div class="div1 mui-clearfix">
+				<p class="p1" id='dtime'></p>
+				<p class="p2"></p>
+				<p class="p1" id="duser"></p>
+				<p class="p2"></p>
+				<p class="p1" id='dmoney'></p>
+				<p class="p2"></p>
+				<p class="p1" id='dfee'></p>
+				<p class="p2"></p>
+			</div>
+			<div class="div2">
+				<span class="close_btn">关闭</span>
+			</div>
+		</div>
+	</div>
+
+
 </body>
 <script src="<?=base_url()?>public/js/mui.min.js"></script>
 <script src="<?=base_url()?>public/js/jquery.js"></script>
 <script src="<?=base_url()?>public/js/qrcode.min.js"></script>
 <script src="<?=base_url()?>public/js/clipboard.js"></script>
 <?php $this->load->view('module/loading')?>
+<script>
+	$(function(){
+		var ww = $(window).width();
+		var hh = $(window).height();
+		$(".section12").css("top",(hh-$(".section12").height())/2)
+		$(document).on('click','.section8-1',function(){
+			var moneys = $(this).data('money'),
+			user = $(this).data('user'),
+			time = $(this).data('time'),
+			fee = $(this).data('fee'),
+			accounts = $(this).data('accoun');
+			$('#dtime').html('交易时间'+time);
+			$('#duser').html(user==accounts?"发送给:"+user:"发送者:"+user);
+			$('#dmoney').html("交易金额："+moneys);
+			$('#dfee').html('矿工费：'+fee);
+			$(".section12").show();
+			$(".section13").show();
+		});
+		$(".close_btn").click(function(){
+			$(".section12").hide();
+			$(".section13").hide();
+		})
+	})
+</script>
 <script type="text/javascript">
 	$(document).ready(function(){
         var clipboard = new Clipboard('.copy_btn');
@@ -202,18 +250,21 @@
 			cache:false,
 			dataType:'JSON',
 			success:function(data){
+				console.log(data)
 				mui.hideLoading();
 				var html='';
 				$.each(data.deal,function(index, el) {
-					var clas = el.accounts==data.eth_accounts?'plus':'reduce';
-					html += '<div class="section8-1 '+clas+'">'
+					var clas = el.accounts==data.eth_accounts?'plus':'reduce',
+					user = el.accounts!=data.eth_accounts?el.accounts:el.useraccounts,
+					accoun = el.accounts!=data.eth_accounts?el.accounts:data.eth_accounts;
+					html += '<div class="section8-1 '+clas+'" data-id="'+el.id+'" data-money="'+el.moneys+data.nickname+'" data-user="'+user+'" data-accoun="'+accoun+'"data-time="'+el.addtime+'" data-fee="'+el.fee+data.nickname+'">'
 							+'<div class="container mui-clearfix">'
 							+'<div class="ab">'
 							+'<p class="p1">'+el.accountstr+'</p>'
 							+'<p class="p2">'+el.addtime+'</p>'
 							+'</div>'
 							+'<div class="ad">'
-							+'<p><img src="<?=base_url()?>public/images/icon_'+clas+'.png"/> <span>'+el.moneys+'</span></p>'
+							+'<p><img src="<?=base_url()?>public/images/icon_'+clas+'.png"/> <span>'+el.moneys+data.nickname+'</span></p>'
 							+'</div></div></div>';
 				});
 				if(data.deal.length<10){

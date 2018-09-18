@@ -293,7 +293,7 @@ class Manage extends CI_Controller {
 
 		}
 
-		$data['codes'] = $this->Dbmodel->select()->limit($count,$number)->get('option');
+		$data['codes'] = $this->Dbmodel->order_by('addtime')->select()->limit($count,$number)->get('option');
 
 		if($posts){
 

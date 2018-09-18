@@ -85,6 +85,9 @@
 					<input type="text" name="accounts" id="accounts" value="<?=$_GET['accounts']?>" placeholder="钱包地址"/>
 					<img src="<?=base_url()?>public/images/send_icon_qr_code.png" onClick="scanDemos()" alt="" class="im1"/>
 				</div>
+				<div class="f2 mui-clearfix" hidden id="fees">
+					<p class="p1"><span>矿工费：<span id="fe"></span></span></p>
+				</div>
 				<div class="f1">
 					<input type="number" name="moneys" id="moneys" placeholder="交易金额" />
 				</div>
@@ -105,11 +108,21 @@
 </body>
 
 <script type="text/javascript" charset="utf-8">
+var fee = <?=$arr['fee']?>,
+nickname = "<?=$arr['nickname']?>";
+$("#moneys").bind('input propertychange',function(){
+	var mone = $(this).val();
+	$('#fees').show();
+	$('#fe').html(mone*fee/100+nickname+'&nbsp; &nbsp; &nbsp; 扣除'+(parseInt(mone)+(mone*fee/100))+nickname);
+	if(mone==''){
+		$('#fees').hide();
+	}
+});
   	
 $('.sub').click(function(){
 	var accounts = $('#accounts').val(),moneys = $('#moneys').val(),remark = $('#remark').val();
 	if(accounts == "" || accounts.length!=42) {mui.toast('请输入有效的钱包地址!');return false};
-	if(moneys == "" || moneys><?=$arr['moneys']?>) {mui.toast('请输入有效的交易金额!');return false};
+	if(moneys == "" || (parseInt(moneys)+moneys*fee*100/10000)><?=$arr['moneys']?>) {mui.toast('请输入有效的交易金额!');return false};
 	var btnArray = ['取消', '确定'];
   	mui.confirm('<input type="password" id="test" />', '请输入密码', null, function(event) {
 	    var index = event.index;
@@ -142,7 +155,11 @@ $('.sub').click(function(){
 	});
 });
 $('#max').click(function(event) {
-	$('#moneys').val(<?=$arr['moneys']?>);
+	var fe = <?=$arr['moneys']?>*fee*100/10000,
+	mon = <?=$arr['moneys']?>-fe;
+	$('#moneys').val(mon);
+	$('#fees').show();
+	$('#fe').html(fe+nickname);
 });
 </script>
 </html>

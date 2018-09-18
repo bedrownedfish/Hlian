@@ -249,9 +249,9 @@ class Ethereum{
     }
 
 
-    public function balanceOfSGVtoCoinBase(){
+    public function balanceOfHLIANtoCoinBase(){
 
-        return $this->balanceOfSGV($this->coinbase);
+        return $this->balanceOfHLIAN($this->coinbase);
     }
 
  
@@ -261,7 +261,7 @@ class Ethereum{
     }
 
 
-    public function balanceOfSGV($address,$contractAddress = ""){
+    public function balanceOfHLIAN($address,$contractAddress = ""){
 
         $result = 0;
 
@@ -302,7 +302,7 @@ class Ethereum{
     }
 
 
-    public function transferSGV($toAddress, $value, $contractAddress = ""){
+    public function transferHLIAN($toAddress, $value, $contractAddress = ""){
 
         $result = false;
 
@@ -316,7 +316,7 @@ class Ethereum{
 
             $data = array();
 
-            $tokenBalance = $this->balanceOfSGV($this->coinbase);
+            $tokenBalance = $this->balanceOfHLIAN($this->coinbase);
           
             $tokenEnough = bcsub($tokenBalance, $value, 2) >= 0;
 			
@@ -356,7 +356,7 @@ class Ethereum{
     }
 
 
-    public function transferSGVtoCoinbase($fromAddress, $value, $password){
+    public function transferHLIANtoCoinbase($fromAddress, $value, $password){
 
         
 
@@ -371,7 +371,7 @@ class Ethereum{
 
             $data = array();
 
-            $tokenBalance = $this->balanceOfSGV($fromAddress);
+            $tokenBalance = $this->balanceOfHLIAN($fromAddress);
             $tokenEnough = bcsub($tokenBalance, $value, 2) >= 0;
 
             if ($tokenEnough) {

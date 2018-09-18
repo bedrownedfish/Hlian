@@ -54,7 +54,7 @@ class Operation extends CI_Controller {
 		echo json_encode($data);
 
 	}
-	
+
 	//交易记录
 	public function dealPage(){
 
@@ -63,6 +63,8 @@ class Operation extends CI_Controller {
 		if($posts){
 
 			$id = $posts['id'];
+
+			$arr['nickname'] = $this->Dbmodel->select()->where(array('id'=>$id))->get('kinds',1)['nickname'];
 
 			$arr['eth_accounts'] = $this->Dbmodel->ci_find(array('id'=>$this->session->userid),'members','eth_accounts')['eth_accounts'];
 
@@ -77,12 +79,9 @@ class Operation extends CI_Controller {
 
 					$arr['deal'][$k]['moneys'] = number_format($v['moneys'],2);
 
-					if($v['accounts']==$arr['eth_accounts']){
+					$arr['deal'][$k]['useraccounts'] = $this->Dbmodel->select('eth_accounts')->where(array('id'=>$v['userid']))->get('members',1)['eth_accounts'];
 
-						$arr['deal'][$k]['useraccounts'] = $this->Dbmodel->select('eth_accounts')->where(array('id'=>$v['userid']))->get('members',1)['eth_accounts'];
-
-					}
-					$arr['deal'][$k]['accountstr'] = substr_replace($v['accounts']!=$arr['deal'][$k]['useraccounts']?$v['accounts']:$arr['deal'][$k]['useraccounts'], "***",5,25);
+					$arr['deal'][$k]['accountstr'] = substr_replace($arr['eth_accounts']==$arr['deal'][$k]['useraccounts']?$v['accounts']:$arr['deal'][$k]['useraccounts'], "***",5,25);
 				}
 			}
 
@@ -131,19 +130,24 @@ class Operation extends CI_Controller {
 
 			$rusersId = $this->Dbmodel->ci_find(array('eth_accounts'=>$posts['accounts']),'members','id')['id'];
 
+			$config = $this->Dbmodel->select()->get('config',1);
+
+			$feemoneys = $config['fee']*$moneys/100;
+
           	if($rusersId){
 
                 $a = $this->Dbmodel->ci_num(array($posts['tokname']=>$moneys),'balance',array('userid'=>$rusersId));
 
                 if($a){
 
-                    $this->Dbmodel->ci_num(array($posts['tokname']=>-$moneys),'balance',array('userid'=>$this->session->userid));
+                    $this->Dbmodel->ci_num(array($posts['tokname']=>-($moneys+$feemoneys)),'balance',array('userid'=>$this->session->userid));
 
                     $kid = $this->Dbmodel->ci_find(array('tokname'=>$posts['tokname']),'kinds','id')['id'];
 
                     $data = array(
                         'userid' => $this->session->userid,
                         'moneys' => $moneys,
+                        'fee'	 => $feemoneys,
                         'addtime' => time(),
                         'accounts' => $posts['accounts'],
                         'remark' => $posts['remark'],
@@ -158,7 +162,9 @@ class Operation extends CI_Controller {
 
             }else{
             	$block = $this->Dbmodel->select('block')->get('config',1)['block'];
+
             	if($block == 0){$this->Publics->jsonReturned('区块交易繁忙，请联系管理员处理交易！',0);return false;};
+
                 $this->load->library('ethereum');
 
               	if($posts['tid'] != 1){
@@ -178,6 +184,7 @@ class Operation extends CI_Controller {
                   	$hdata = array(
                     	 'userid' => $this->session->userid,
                          'moneys' => -$moneys,
+                         'fee'	  => $feemoneys,
                          'addtime' => time(),
                          'accounts' => $posts['accounts'],
                          'remark' => $posts['remark'],
@@ -186,6 +193,8 @@ class Operation extends CI_Controller {
                     );
 
                     $this->Dbmodel->ci_insert($data,'dealrecord');
+
+                    $this->Dbmodel->ci_num(array($posts['tokname']=>-($moneys+$feemoneys)),'balance',array('userid'=>$this->session->userid));
 
                 }
 
