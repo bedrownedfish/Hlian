@@ -34,6 +34,8 @@ class Commerce extends CI_Controller {
 
 				$data['result'] = $balan;
 
+				$data['result']['accounts'] = $datas['eth_accounts'];
+
 			}else{
 
 				$data['error_code'] = 1;
@@ -88,8 +90,109 @@ class Commerce extends CI_Controller {
 		echo json_encode($data);
 
 	}
-	//后台 获取用户交易记录数据
+	//H链转账
+	public function transferBalance(){
 
+		$posts =  file_get_contents("php://input");
+
+		$posts = json_decode($posts, true);
+
+		$data = $this->typetrue($posts);
+
+		if($posts && !$data['error_code']){
+
+			$user = $this->Dbmodel->select()->where(array('username'=>$posts['username']))->get('members',1);
+
+			$pas = $this->Publics->encryptionCode($posts['code']);
+
+			$balance = trim($posts['balance']);
+
+			if($pas != $user['mak']){
+			
+				$data['error_code'] = 1;
+
+				$data['result'] = "密码错误！";
+
+				echo json_encode($data);
+
+				return false;
+
+			}
+
+			$moneys = abs($posts['balance']);
+		
+			$number = $this->Dbmodel->select()->where(array('userid'=>$user['id']))->get('balance',1);
+
+			if($user['eth_accounts'] == $posts['accounts']){
+
+				$data['error_code'] = 1;
+
+				$data['result'] = "不能发送给自己！";
+
+				echo json_encode($data);
+
+				return false;
+
+			}
+
+			if($moneys>$number['hlink'] || $moneys<=0){
+
+				$data['error_code'] = 1;
+
+				$data['result'] = "交易数量错误！";
+
+				echo json_encode($data);
+
+				return false;
+
+			}
+
+			$accountsUser = $this->Dbmodel->select()->where(array('eth_accounts'=>$posts['accounts']))->get('members',1);
+
+			if(!$accountsUser['id']){
+
+				$data['error_code'] = 1;
+
+				$data['result'] = "系统查无此人";
+
+				echo json_encode($data);
+
+				return false;
+
+			}
+
+			$config = $this->Dbmodel->select()->get('config',1);
+
+			$feemoneys = $config['fee']*$moneys/100;
+
+			$a = $this->Dbmodel->ci_num(array($posts['tokname']=>$moneys),'balance',array('userid'=>$accountsUser['id']));
+
+			if($a){
+
+				$this->Dbmodel->ci_num(array($posts['tokname']=>-($moneys+$feemoneys)),'balance',array('userid'=>$user['id']));
+
+				$data = array(
+					'userid' => $user['id'],
+					'moneys' => $moneys,
+					'fee'	 => $feemoneys,
+					'addtime' => time(),
+					'accounts' => $posts['accounts'],
+					'remark' => $posts['remark'],
+					'kid' => 2
+				);
+
+				$this->Dbmodel->ci_insert($data,'dealrecord');
+
+			}
+
+			$data['result'] = "发送成功";
+
+		}
+
+		echo json_encode($data);
+
+	}
+	//后台 获取用户交易记录数据
 	/*
 	
 	*/
@@ -179,6 +282,33 @@ class Commerce extends CI_Controller {
 		echo json_encode($data);
 
 	}
+
+	public function setChart(){
+
+		$posts =  file_get_contents("php://input");
+
+		$posts = json_decode($posts, true);
+
+		$data = $this->typetrue($posts);
+
+		if($posts && !$data['error_code']){
+
+			$chart = $this->Publics->getKinds();
+
+			foreach ($chart as $key => $value) {
+
+				$a['year'] = $key;
+
+				$a['value'] = (float)$value;
+
+				array_unshift($data['result'],$a);
+
+			}
+
+		}
+		echo json_encode($data);
+
+	}
 	public function setBalance(){
 
 		$posts =  file_get_contents("php://input");
@@ -210,13 +340,13 @@ class Commerce extends CI_Controller {
 				if($a && $b){
 
 					$datas = array(
-                        'userid' => $type==1?$hos['id']:$users['id'],
-                        'moneys' => $codes[1],
-                        'addtime' => time(),
-                        'accounts' => $type==1?$users['eth_accounts']:$config['host'],
-                        'remark' => $posts['remark'],
-                        'kid' => 2
-                    );
+						'userid' => $type==1?$hos['id']:$users['id'],
+						'moneys' => $codes[1],
+						'addtime' => time(),
+						'accounts' => $type==1?$users['eth_accounts']:$config['host'],
+						'remark' => $posts['remark'],
+						'kid' => 2
+					);
 					$this->Dbmodel->ci_insert($datas,'dealrecord');
 				}else{
 

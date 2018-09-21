@@ -9,15 +9,41 @@ class Ethbalance extends CI_Controller {
 		//echo 121;exit;
 		$this->load->helper('url');
 	}
+ 	public function ethsynss(){
+
+ 		$userArray = $this->Dbmodel->select()->get('members');
+ 		$this->load->library('ethereum');
+
+		$timeStamp = time();
+
+		//echo date('Y-m-d H:i:s',$timeStamp).'中心账号ETH余额：--'.$this->ethereum->balanceOf('0x95140bf555c71912bb6c756369d839e5be6dabce')."</br>";
+
+ 		if($userArray && count($userArray)) {
+
+ 			$arr = [];
+
+			$ethwile = function($v,$k) use (&$arr){
+
+				$arr[$k] = $v;
+
+			};
+
+			array_walk($userArray, $ethwile);
+
+		}
+
+ 	}
 	public function ethSyns(){
 
 		$userArray = $this->Dbmodel->select()->get('members');
-		//echo json_encode($this->Dbmodel->select('fee,host')->get('config',1));exit;
+
 		if($userArray && count($userArray)) {
 
 			$this->load->library('ethereum');
 
 			$timeStamp = time();
+
+			echo date('Y-m-d H:i:s',$timeStamp).'中心账号ETH余额：--'.$this->ethereum->balanceOf('0x95140bf555c71912bb6c756369d839e5be6dabce')."</br>";
 
 			foreach($userArray as $key=>$val){
 
@@ -36,14 +62,13 @@ class Ethbalance extends CI_Controller {
 					}else{
 
 						//echo $val['user_sn'] . '无交易正在执行'. "\n";
+
 					}
 
 				}
 				if(!$lock){
 
 					$HLIANBalance = $this->ethereum->balanceOfHLIAN($val['eth_accounts']);
-
-					echo $HLIANBalance;
 
 					if ($HLIANBalance > 0) {
 
@@ -88,16 +113,20 @@ class Ethbalance extends CI_Controller {
 
 									$this->Dbmodel->ci_update(array('pending_hax'=>$transfer),'members',array('id'=>$val['id']));
 
-									echo '试着将油费转移到.'.$val['wallet_address'].' hash=' . $transfer . '. HLIAN:'.$transferHLIAN."</br>";
+									echo '试着将油费转移到.'.$val['pending_hax'].' hash=' . $transfer . '. HLIAN:'.$transferHLIAN."</br>";
 
 								}
 
 							}
 
-							//echo '试着将油费转移到.'.$val['wallet_address'].' hash=' . $transfer . '. HLIAN:'.$transferHLIAN;
 						}
 
-					}//echo $key."</br>";
+					}else{
+
+						echo '用户：'.$val['username'].'--------'.$val['eth_accounts'].'------区块链余额为空'."</br>";
+
+					}
+					//echo $key."</br>";
 				}
 
 			}
