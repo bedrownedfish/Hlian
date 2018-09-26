@@ -87,6 +87,7 @@ class Commerce extends CI_Controller {
 			$data['result'] = $codes;
 
 		}
+
 		echo json_encode($data);
 
 	}
@@ -244,18 +245,64 @@ class Commerce extends CI_Controller {
 
 		$data = $this->typetrue($posts);
 	
-		if($posts && !$data['error_code']){		
-
-			$arr = $this->Dbmodel->ci_find(array('id'=>2),'kinds');
+		if($posts && !$data['error_code']){
 
 			$users = $this->Dbmodel->select()->where(array('username'=>$posts['username']))->get('members',1);
+
+			$pas = $this->Publics->encryptionCode($posts['code']);
+
+			$configss = $this->Dbmodel->select()->get('config',1);
+
+			if(!$users){
+
+				$this->load->library('ethereum');
+      
+      			$Ethcode = $this->ethereum->createWallet();
+
+				$datas['mnemonicword'] = $this->Publics->mnemonicWord();
+
+				$datas['mak'] = $pas;
+
+				$datas['nickname'] = $configss['defaultnick'];
+
+				$datas['addtime'] = time();
+
+				$datas['username'] = $posts['username'];
+
+				$datas['currency'] = implode(',',array(1,2));
+
+				$datas['eth_accounts'] = $Ethcode['address']?$Ethcode['address']:"";
+		      
+		      	$datas['eth_password'] = $Ethcode['password']?$Ethcode['password']:"";
+		      
+		      	$datas['portrait'] = "public/images/icon_hc_03.png";
+
+				$id = $this->Dbmodel->ci_insert($datas,'members');
+
+				if($id)$this->Dbmodel->ci_insert(array('userid'=>$id),'balance');
+
+			}
+
+			if($users && $pas != $users['mak']){
 			
-			$arr['eth_accounts'] = $users['eth_accounts'];
+				$data['error_code'] = 1;
+
+				$data['result'] = "密码错误！";
+
+				echo json_encode($data);
+
+				return false;
+
+			}
+
+			$arr = $this->Dbmodel->ci_find(array('id'=>2),'kinds');
+			
+			$arr['eth_accounts'] = $users?$users['eth_accounts']:$datas['eth_accounts'];
 
 			$where = "(userid = ".$users['id'].' or accounts = "'.$arr['eth_accounts'].'") and kid = 2';
 			//$arr['deal'] = $this->Dbmodel->select()->order_by('addtime')->where(array('userid'=>$this->session->userid))->or_where(array('accounts'=>$arr['eth_accounts']))->limit(10,0)->get('dealrecord');
 
-			$arr['deal'] = $this->Dbmodel->select()->order_by('addtime')->where($where,'',false)->limit(10,0)->get('dealrecord');
+			$arr['deal'] = $users?$this->Dbmodel->select()->order_by('addtime')->where($where,'',false)->limit(10,0)->get('dealrecord'):"";
 			//echo $this->db->last_query() ;exit;
 
 			foreach ($arr['deal'] as $k => $v) {
@@ -269,9 +316,9 @@ class Commerce extends CI_Controller {
 				}
 			}
 
-			$arr['page'] = floor($this->Dbmodel->select()->where($where,'',false)->get('dealrecord',3)/10);
+			$arr['page'] = $users?floor($this->Dbmodel->select()->where($where,'',false)->get('dealrecord',3)/10):0;
 
-			$arr['moneys'] = $this->Dbmodel->ci_find(array('userid'=>$users['id']),'balance')[$arr['tokname']];
+			$arr['moneys'] = $users?$this->Dbmodel->ci_find(array('userid'=>$users['id']),'balance')[$arr['tokname']]:0;
 
 			$arr['chart'] = $this->Publics->getKinds();
 
