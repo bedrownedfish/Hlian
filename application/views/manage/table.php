@@ -73,7 +73,7 @@
 							</td>
 							
 							<td align="left"><?=$v['eth_accounts']?></td>
-							<td><?=$v['id']?></td>
+							<td><?=$v['userid']?></td>
 							<td><?=date('Y-m-d H:i:s',$v['addtime'])?></td>
 							<td><?=$v['nickname']?></td>
 							<td><?=number_format($v['ether'],8)?></td>

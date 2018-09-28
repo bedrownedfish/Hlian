@@ -88,6 +88,8 @@ class News extends CI_Controller {
 
 	    			$mage['message'] = '轮播图更新完成';
 
+	    			$this->Publics->setOption('第'.$id.'张轮播图');
+
 	    			$mage['code'] = $code;
 
 	    			$mage['type'] = 1;
@@ -131,6 +133,8 @@ class News extends CI_Controller {
 		$get = $this->input->get();
 
 		if($get){
+
+			$this->Publics->setOption($get['id'].'新闻状态更改');
 
 			$a['codes'] = $this->Dbmodel->ci_update(array('type'=>$get['type']),'news',array('id'=>$get['id']));
 
@@ -182,6 +186,8 @@ class News extends CI_Controller {
 				$code['types'] = 1;
 
 				$code['message'] = "添加成功！";
+
+				$this->Publics->setOption('新闻'.$a.'添加成功');
 
 			}else{
 
@@ -309,6 +315,8 @@ class News extends CI_Controller {
 		$a['dtype'] = $this->Dbmodel->ci_update($posts,'news',array('id'=>$posts['id']));
 
 		$a['message'] = $a['dtype']?"修改完成":"修改失败";
+
+		$a['dtype']?$this->Publics->setOption('新闻'.$posts['id'].'修改完成'):"";
 
 		echo json_encode($a);exit;
 

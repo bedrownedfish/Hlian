@@ -175,6 +175,7 @@ layui.config({
 			dataType:'JSON',
 			success:function(data){
 				var a = !dtype?"冻结":"开启";
+				console.log(data);
 				data.codes?layer.msg('账户'+a+'成功'):layer.msg('账户'+a+'失败');
 				layer.close(index);
 			},

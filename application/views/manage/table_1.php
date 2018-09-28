@@ -113,7 +113,7 @@
 				  </div> -->
 				  <div class="layui-form-item">
 				    <div class="layui-input-block">
-				    	<input type="hidden" name="id" value="<?=$codes['id']?>" id = "memberid">
+				    	<input type="hidden" name="id" value="<?=$codes['userid']?>" id = "memberid">
 				      	<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
 				      	<button type="button" class="layui-btn layui-btn-primary" onclick="window.location.href='<?=base_url('manage/table')?>'">返回</button>
 				    </div>

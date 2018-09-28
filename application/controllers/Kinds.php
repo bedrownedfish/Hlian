@@ -41,6 +41,8 @@ class Kinds extends CI_Controller {
 
 			$a = $this->Dbmodel->ci_update($posts,'kinds',array('id'=>$posts['id']));
 
+			$a?$this->Publics->setOption('币种'.$posts['id'].'修改完成'):"";
+
 			echo json_encode($a);exit;
 
 		}
@@ -77,6 +79,9 @@ class Kinds extends CI_Controller {
 
 			if($a){
 				$this->Dbmodel->ci_update(array('price'=>$data['price']),'kinds',array('id'=>$data['kid']));
+
+				$this->Publics->setOption('币种价格添加--'.$data['price']);
+
 				$this->Publics->jsonReturned('添加成功',0);return false;
 
 			}else{
@@ -111,6 +116,8 @@ class Kinds extends CI_Controller {
 
 				$this->Publics->jsonReturned('回复成功');return false;
 
+				$this->Publics->setOption('回复用户反馈'.$posts['id'].'成功');
+
 			}
 			$this->Publics->jsonReturned('回复失败',0);return false;
 		}
@@ -143,6 +150,8 @@ class Kinds extends CI_Controller {
 
 			$a = $posts['id']?$this->Dbmodel->ci_update($posts,'common',array('id'=>$posts['id'])):$this->Dbmodel->ci_insert($posts,'common');
 
+			$a?$this->Publics->setOption('常见问题'.$posts['id']?$posts['id']:$a.$posts['id']?"修改"："添加"):"";
+
 			$this->Publics->jsonReturned($a?"添加成功":"添加失败",0);return false;
 
 		}
@@ -171,6 +180,8 @@ class Kinds extends CI_Controller {
 			$a = $this->Dbmodel->ci_update($posts,'ratio',array('id'=>1));
 
 			if($a){
+
+				$this->Publics->setOption('汇率修改完成--'.$posts['ratio']);
 
 				$this->Publics->jsonReturned('修改成功');return false;
 

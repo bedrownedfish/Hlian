@@ -39,7 +39,7 @@
 					<div class="layui-inline">
 				      	<label class="layui-form-label">发布时间</label>
 				      	<div class="layui-input-inline">
-				        	<input type="text"  lay-verify="required" class="layui-input" value="<?=date('Y-m-d H:i:s',$codes['addtime'])?>" name="addtime" id="date1" placeholder="选择发布时间">
+				        	<input type="text"  lay-verify="required" class="layui-input" value="<?=date('Y-m-d H:i:s',$codes['addtime']?$codes['addtime']:time())?>" name="addtime" id="date1" placeholder="选择发布时间">
 				    	</div>
 				    </div>
 				</div>

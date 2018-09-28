@@ -50,6 +50,8 @@ class Manage extends CI_Controller {
 
 			$this->session->set_userdata(array('adminId'=>$a['id']));
 
+			$this->Publics->setOption('后台登陆!');
+
 			$this->Publics->jsonReturned('登陆成功');exit;
 
 		}
@@ -150,8 +152,9 @@ class Manage extends CI_Controller {
 
 			$a = $this->Dbmodel->ci_update($posts,'config',array('id'=>1));
 
-			$data['message'] = $a?"修改完成！":"修改失败！";
-			
+			$data['message'] = $a?"修改完成！":"修改失败！";	
+
+			$a?$this->Publics->setOption('修改系统设置'):"";		
 
 			echo json_encode($data);exit;
 
@@ -201,6 +204,8 @@ class Manage extends CI_Controller {
 			$edat = "aaa";
 
 			if($a&&$b){
+
+				$this->Publics->setOption('修改用户'.$posts['id'].'信息');
 				
 				// $this->load->view('manage/table_1?id='.$accounts,$edat);
 				redirect('manage/table_1?id='.$accounts."&msg=".$edat,'refresh');exit;
@@ -251,6 +256,8 @@ class Manage extends CI_Controller {
 	    		if($a){
 
 	    			$mage['message'] = '头像更新完成';
+
+	    			$this->Publics->setOption('用户'.$id.'头像更新!');
 
 	    			$mage['code'] = $code;
 
@@ -327,7 +334,7 @@ class Manage extends CI_Controller {
 			
 			$data['codes'][$k]['useraccounts']=$this->Dbmodel->select('eth_accounts')->where(array('id'=>$v['userid']))->get('members',1)['eth_accounts'];
 			
-			$data['codes'][$k]['tokname'] = $this->Dbmodel->select('tokname')->where(array('id'=>$v['kid']))->get('kinds',1)['tokname'];
+			$data['codes'][$k]['nickname'] = $this->Dbmodel->select('nickname')->where(array('id'=>$v['kid']))->get('kinds',1)['nickname'];
 
 		}
 
@@ -412,6 +419,12 @@ class Manage extends CI_Controller {
 
 			$a['codes'] = $this->Dbmodel->ci_update($data,'members',array('id'=>$get['id']));
 
+			if($a['codes'] ){
+
+				$this->Publicsset->setOption('关闭用户'.$get['id'].'H链');
+
+			}
+
 			echo json_encode($a);
 		}
 	}
@@ -423,7 +436,7 @@ class Manage extends CI_Controller {
 
 		if($get){
 
-			$a['codes'] = $this->Dbmodel->ci_update(array('type'=>$get['type']),'members',array('id'=>$get['id']));
+			$a['codes'] = $this->Dbmodel->ci_update(array('type'=>(int)$get['type']),'members',array('id'=>$get['id']));
 
 			echo json_encode($a);
 
@@ -447,6 +460,8 @@ class Manage extends CI_Controller {
 
 						$data['success'] = '登陆名修改成功';
 
+						$this->Publics->setOption('登陆名修改成功!');
+
 					}else{
 
 						$data['error'] = '登陆名修改失败';
@@ -460,6 +475,8 @@ class Manage extends CI_Controller {
 						if($this->Dbmodel->ci_update(array('pasword'=>$this->Publics->encryptionCode($posts['newps'])),'manage',array('id'=>1))){
 
 							$data['success'] = '密码修改成功';
+
+							$this->Publics->setOption('登陆密码修改成功!');
 
 						}else{
 

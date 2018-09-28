@@ -42,7 +42,7 @@
                                 <td><?=$v['useraccounts']?></td>
                                 <td><?=$v['accounts']?></td>
                                 <td><?=date('Y-m-d H:i:s',$v['addtime'])?></td>
-                                <td><?=$v['tokname']?></td>
+                                <td><?=$v['nickname']?></td>
                                 <td><?=$v['remark']?></td>
                                 <td><?=$v['moneys']?></td>
                               </tr>
@@ -123,7 +123,7 @@
                           +"<td>"+el.useraccounts+"</td>"
                           +"<td>"+el.accounts+"</td>"
                           +"<td>"+DateToTime(el.addtime)+"</td>"
-                          +"<td>"+el.tokname+"</td>"
+                          +"<td>"+el.nickname+"</td>"
                           +"<td>"+el.remark+"</td>"
                           +"<td>"+el.moneys+"</td>";
                   });

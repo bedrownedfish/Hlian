@@ -239,7 +239,7 @@
 
 			}else{
 
-				$query=$this->db->from('members a')->join('balance b', 'b.userid=a.id')->get();
+				$query=$this->db->from('members a')->join('balance b', 'b.userid=a.id','right')->get();
 
 			}
 

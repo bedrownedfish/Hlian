@@ -371,6 +371,18 @@ class Publics extends CI_Model{
 		return $data;
 
 	}
+	//增加后台操作日志
+	public function setOption($code){
+
+		$data=array(
+			'staff'=>'admin',
+			'addtime'=>time(),
+			'code'=>$code,
+			'ip'=>$this->input->ip_address(),
+		);
+		$this->Dbmodel->ci_insert($data,'option');
+
+	}
 	public function setNewsGo ($id){
 
 		$data['news'] = $this->Dbmodel->ci_find(array('id'=>$id),'news');
